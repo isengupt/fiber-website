@@ -258,12 +258,17 @@ a:focus {
 
 .grid__item {
   display: flex;
-
+  height: 100%;
+  
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #fff;
 
+}
+
+.trails-side {
+  height: 500px;
 }
 
 .page__name {
@@ -291,12 +296,22 @@ a:focus {
   padding-top: 1rem;
 }
 
-.page__description {
-  font-size: 12px;
+.page__subtitle {
+  font-size: 16px;
 
+  font-style: italic;
+  padding-bottom: 0.5rem;
+  opacity: 0.7;
+  padding-top: 0.5rem;
+}
+
+
+.page__description {
+  font-size: 14px;
+  opacity: 0.5;
   font-weight: 400;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .title__small {
@@ -343,7 +358,8 @@ a:focus {
 
 .form-minimal label {
 
-  font-size: 12px;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
   font-weight: bolder;
   position: absolute;
@@ -402,6 +418,13 @@ a:focus {
 
 .page__number {
   margin-right: 1rem;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.page__white {
+  opacity: 1 !important;
+  font-weight: bold;
 }
 
 
@@ -538,4 +561,57 @@ span:hover:before {
 }
 svg:hover {
   fill: #ccc;
+}
+
+.grid__item:hover
+
+{
+  filter: brightness(90%);
+
+}
+
+@media only screen and (max-width: 768px) {
+  .page__grid {
+    display: flex !important;
+    flex-direction: column;
+    min-width: 350px;
+    align-items: flex-start;
+  }
+
+  .page__grid__alternate {
+    display: flex !important;
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .grid__item {
+    align-items: center;
+    width: 100%;
+  }
+ 
+}
+
+.form-minimal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.container {
+  width: 100% !important;
+}
+
+.altered__text {
+  display: flex;
+  width: 100%;
+
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+.trails-main {
+  width: 100% !important;
 }

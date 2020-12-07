@@ -4,10 +4,10 @@ import VisibilitySensor from "./components/VisibilitySensor";
 import "./styles.css";
 
 import * as THREE from "three/src/Three";
-
+import Octahedron from './components/Octahedron'
 import { Canvas, useRender } from "react-three-fiber";
+import Chain from './components/Experience'
 
-import { useSpring, animated } from "react-spring/three";
 import { useTrail, animated as a, useChain } from "react-spring";
 import MeshDash from "./MeshDash";
 
@@ -27,8 +27,11 @@ const FormChain = ({ isVisible }) => {
 
   return (
     <div class="container">
+     
       <form class="form-minimal">
+
         <FormTrail open={isVisible} trailRef={trail1Ref}>
+       
           <div class="minimal-input">
             <input
               class="minimal-textfield"
@@ -86,72 +89,7 @@ const FormChain = ({ isVisible }) => {
   );
 };
 
-const Chain = ({ isVisible }) => {
-  const trail1Ref = useRef();
 
-  const trail2Ref = useRef();
-
-  const trail3Ref = useRef();
-
-  useChain(
-    isVisible
-      ? [trail1Ref, trail2Ref, trail3Ref]
-      : [trail3Ref, trail2Ref, trail1Ref],
-
-    isVisible ? [0.4, 0.8, 1.2] : [0.4, 0.8, 1.2]
-  );
-
-  return (
-    <div className="page__container page__grid">
-      <div className="grid__item">
-        <ChainTrail open={isVisible} trailRef={trail1Ref}>
-          <div className="page__name">INTRO</div>
-          <div className="page__line">
-            <div className="line"></div>
-          </div>
-          <div className="page__title">
-            Animation videos for blockchain projects and ICO's
-          </div>
-          <div className="page__description page__big">
-            Making complex topics clear
-          </div>
-          <div className="page__description page__big">
-            Making complex topics clear
-          </div>
-        </ChainTrail>
-      </div>
-      <div className="grid__item">
-        <ChainTrail open={isVisible} trailRef={trail2Ref}>
-          <div className="page__name">01</div>
-          <div className="page__line">
-            <div className="line"></div>
-          </div>
-          <div className="page__title title__small">
-            Animation videos for blockchain projects and ICO's
-          </div>
-          <div className="page__description page__small">
-            Making complex topics clear
-          </div>
-        </ChainTrail>
-      </div>
-
-      <div className="grid__item">
-        <ChainTrail open={isVisible} trailRef={trail3Ref}>
-          <div className="page__name">01</div>
-          <div className="page__line">
-            <div className="line"></div>
-          </div>
-          <div className="page__title title__small">
-            Animation videos for blockchain projects and ICO's
-          </div>
-          <div className="page__description page__small">
-            Making complex topics clear
-          </div>
-        </ChainTrail>
-      </div>
-    </div>
-  );
-};
 
 function Trail({ open, children, ...props }) {
   const items = React.Children.toArray(children);
@@ -183,37 +121,34 @@ function Trail({ open, children, ...props }) {
   );
 }
 
-function ChainTrail({ open, trailRef, children, ...props }) {
-  const items = React.Children.toArray(children);
+const Projects = [
+  {number: '01', title: 'Contemplation Books Sentiment App', 
+languages: 'React Native, MongoDB, Swift',
 
-  const trail = useTrail(items.length, {
-    config: { mass: 5, tension: 2000, friction: 200 },
-    opacity: open ? 1 : 0,
-    x: open ? 0 : 20,
-    ref: trailRef,
-    height: open ? 110 : 0,
-    from: { opacity: 0, x: 20, height: 0 },
-    reverse: !open,
-  });
-  return (
-    <div className="flex__page trails-side" {...props}>
-      <div>
-        {trail.map(({ x, height, ...rest }, index) => (
-          <a.div
-            key={items[index]}
-            className="trails-text"
-            style={{
-              ...rest,
-              transform: x.interpolate((x) => `translate3d(0,${x}px,0)`),
-            }}
-          >
-            <a.div>{items[index]}</a.div>
-          </a.div>
-        ))}
-      </div>
-    </div>
-  );
-}
+points: ['Created a mobile IOS application that uses OpenStreetMap API to allocate benches in users vicinity as contemplation book geocaches',
+"Constructed a cascading system that would use a Swift Native module to tag sentiment of an user’s entry and spread the data up to the entire book and geolocation, creating a time series of sentiment"
+]
+
+},
+{number: '02', title: 'Epidemic Particle Simulation', 
+languages: 'Python',
+
+points: ['Simulated the spread of an infection through elastic interactions of particles in a closed space with the Matplotlib Animation program',
+"Utilized insights in epidemiology in order to accurately portray interactions between particles and gauge statistical chance of infection spread"
+]
+
+},
+{number: '03', title: 'Group Theory Visualizations', 
+languages: 'Javascript, P5.js',
+
+points: ['Leveraged research in applications of abstract algebra on chord mapping to transform and manipulate musical triads and sevenths in algorithmic fashion',
+"Used p5.js sound and canvas libraries to create Tonnetz square and circle of chords visualization program on top of triad classes and functions"
+]
+
+},
+
+]
+
 
 function FormTrail({ open, trailRef, children, ...props }) {
   const items = React.Children.toArray(children);
@@ -245,46 +180,13 @@ function FormTrail({ open, trailRef, children, ...props }) {
   );
 }
 
-function Octahedron({ active, hovered }) {
-  /*   const [active, setActive] = useState(false);
-  const [hovered, setHover] = useState(false); */
-  const vertices = [
-    [-1, 0, 0],
-    [0, 1, 0],
-    [1, 0, 0],
-    [0, -1, 0],
-    [-1, 0, 0],
-  ];
-  const { color, pos, ...props } = useSpring({
-    color: active ? "hotpink" : "white",
-    pos: active ? [0, 0, 2] : [0, 0, 0],
-    "material-opacity": hovered ? 0.6 : 0.25,
-    scale: active ? [2, 2, 2] : [1, 1, 1],
-    rotation: active
-      ? [THREE.Math.degToRad(180), 0, THREE.Math.degToRad(45)]
-      : [0, 0, 0],
-    config: { mass: 10, tension: 1000, friction: 300, precision: 0.00001 },
-  });
-  return (
-    <group>
-      <animated.line position={pos}>
-        <geometry
-          attach="geometry"
-          vertices={vertices.map((v) => new THREE.Vector3(...v))}
-        />
-        <animated.lineBasicMaterial attach="material" color={color} />
-      </animated.line>
-      <animated.mesh {...props}>
-        <octahedronGeometry attach="geometry" />
-        <meshStandardMaterial attach="material" color="grey" transparent />
-      </animated.mesh>
-    </group>
-  );
-}
+
 
 function App() {
   const [active, setActive] = useState(false);
   const [hovered, setHover] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0)
+  
   return (
     <main>
       <div className="frame">
@@ -299,7 +201,7 @@ function App() {
         </div>
         <div className="frame__demos">
           <a
-            href="#"
+            href="https://isengupt.github.io/car-prods/#"
             activeClassName="frame__demo--current"
             className="frame__demo"
           >
@@ -316,7 +218,7 @@ function App() {
             </svg>
           </a>
           <a
-            href="#"
+            href="https://github.com/isengupt/fiber-website"
             activeClassName="frame__demo--current"
             className="frame__demo"
           >
@@ -333,9 +235,12 @@ function App() {
             </svg>
           </a>
           <a
-            href="#"
+        href='#'
             activeClassName="frame__demo--current"
             className="frame__demo"
+
+           
+                     
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -360,7 +265,7 @@ function App() {
                 {({ isVisible }) => (
                   <>
                     <Trail open={isVisible}>
-                      <div className="page__name">INTRO</div>
+                      <div className="page__name">EDUCATION</div>
                       <div className="page__line">
                         <div
                           className="line"
@@ -368,10 +273,10 @@ function App() {
                         ></div>
                       </div>
                       <div className="page__title">
-                        Animation videos for blockchain projects and ICO's
+                        University of Maryland, College Park
                       </div>
                       <div className="page__description">
-                        Making complex topics clear
+                        Bachelor of Science in Mathematics, Minor in Physics
                       </div>
                     </Trail>
                   </>
@@ -384,41 +289,48 @@ function App() {
               {({ isVisible }) => <Chain isVisible={isVisible} />}
             </VisibilitySensor>
           </div>
-          <div className="div">
-            <div className="page__container page__grid__alternate">
+          <div className="div"
+         
+          
+          >
+            <div className="page__container page__grid__alternate"
+            
+            >
               <div className="grid__item">
                 <VisibilitySensor partialVisibility>
                   {({ isVisible }) => (
                     <Trail open={isVisible}>
-                      <div className="page__name">IMPORTANT INFO</div>
+                      <div className="page__name" >PROJECTS</div>
                       <div className="page__line">
                         <div className="line"></div>
                       </div>
-                      <div className="page__title">
-                        Animation videos for blockchain projects and ICO's
+                      <div className="page__title"
+                      onClick={e => setActive(!active)} onPointerOver={e => setHover(true)} onPointerOut={e => setHover(false)}
+                      >
+                        Self study or case studies in programming
                       </div>
                       <div
                         className="page__description page__big page__flex"
-                        onClick={(e) => setActive(!active)}
-                        onPointerOver={(e) => setHover(true)}
-                        onPointerOut={(e) => setHover(false)}
+                        onClick={e => setActive(!active)} onPointerOver={e => setHover(true)} onPointerOut={e => setHover(false)}
                       >
-                        <div className="page__number">01</div>
-                        <div>Unique style</div>
+                        <div className="page__number" style={{opacity: activeIndex === 0 ? 1 : 0.5 }} >01</div>
+                        <div className="page__description page__white" style={{opacity: activeIndex === 0 ? 1 : 0.5 }}>Contemplation Books Sentiment</div>
                       </div>
                       <div className="page__description page__big page__flex">
-                        <div className="page__number">02</div>
-                        <div>Translation</div>
+                        <div className="page__number" style={{opacity: activeIndex === 1 ? 1 : 0.5 }}>02</div>
+                        <div className="page__description page__white" style={{opacity: activeIndex === 1 ? 1 : 0.5 }} >Epidemic Particle Simulation</div>
                       </div>
                       <div className="page__description page__big page__flex">
-                        <div className="page__number">03</div>
-                        <div>Subtitles</div>
+                        <div className="page__number" style={{opacity: activeIndex === 2 ? 1 : 0.5 }}>03</div>
+                        <div className="page__description page__white" style={{opacity: activeIndex === 2 ? 1 : 0.5 }}>Group Theory Visualizations</div>
                       </div>
                     </Trail>
                   )}
                 </VisibilitySensor>
               </div>
-              <div className="grid__item full_height">
+              <div className="grid__item full_height"
+               
+              >
                 <VisibilitySensor partialVisibility>
                   {({ isVisible }) => (
                     <>
@@ -443,18 +355,28 @@ function App() {
                           </Canvas>
                         )}
                       </Spring>
+                      <div className="altered__text">
                       <Trail open={isVisible}>
+
+
                         <div className="page__description page__big page__flex page__bold">
-                          <div className="page__number">03</div>
-                          <div>Subtitles</div>
+                          <div className="page__number">{Projects[activeIndex].number}</div>
+                          <div>{Projects[activeIndex].title}</div>
                         </div>
-                        <div
-                          className="page__description"
-                          style={{ fontWeight: "bold" }}
+                        <div className="page__subtitle page__small" style={{fontWeight: 'bold', opacity: 0.5}}>{Projects[activeIndex].languages}</div>
+                        {Projects[activeIndex].points.map((item) => 
+                          <div
+                          className="page__description page__small"
+                       
                         >
-                          INTRO
+                         {item}
                         </div>
+                        
+                        )}
+
+                     
                       </Trail>
+                      </div>
                     </>
                   )}
                 </VisibilitySensor>
@@ -467,29 +389,31 @@ function App() {
                 <VisibilitySensor partialVisibility>
                   {({ isVisible }) => (
                     <Trail open={isVisible}>
-                      <div className="page__name">INTRO</div>
+                      <div className="page__name">Contact</div>
                       <div className="page__line">
                         <div className="line"></div>
                       </div>
                       <div className="page__title">
-                        Animation videos for blockchain projects and ICO's
+                        Get in contact or inquire about projects
                       </div>
                       <div className="page__description page__big page__flex">
-                        <div className="page__number">02</div>
-                        <div>Translation</div>
+                        <div className="page__number">Phone:</div>
+                        <div>443-760-1159</div>
                       </div>
                       <div className="page__description page__big page__flex">
-                        <div className="page__number">03</div>
-                        <div>Subtitles</div>
+                        <div className="page__number">Email:</div>
+                        <div>ishan6060@gmail.com</div>
                       </div>
                       <div className="page__description page__big page__flex">
-                        <div className="page__number">02</div>
-                        <div>Translation</div>
+                        <div className="page__number">Github:</div>
+                        <div>https://www.github.com/isengupt</div>
                       </div>
+
                       <div className="page__description page__big page__flex">
-                        <div className="page__number">03</div>
-                        <div>Subtitles</div>
+                        <div className="page__number">Alternate:</div>
+                        <div>isengupt@terpmail.umd.edu</div>
                       </div>
+                      
                     </Trail>
                   )}
                 </VisibilitySensor>
@@ -498,51 +422,9 @@ function App() {
               <VisibilitySensor once>
                 {({ isVisible }) => <FormChain isVisible={isVisible} />}
               </VisibilitySensor>
-              {/*              <div class="container">
-                <form class="form-minimal">
-                  <div class="minimal-input">
-                    <input
-                      class="minimal-textfield"
-                      id="first-name"
-                      type="text"
-                      autocomplete="off"
-                    />
-                    <div class="textfield-underline"></div>
-                    <label for="first-name">First name</label>
-                  </div>
-                  <div class="minimal-input">
-                    <input
-                      class="minimal-textfield"
-                      id="last-name"
-                      type="text"
-                      autocomplete="off"
-                    />
-                    <div class="textfield-underline"></div>
-                    <label for="last-name">Last name</label>
-                  </div>
-                  <div class="minimal-input">
-                    <input
-                      class="minimal-textfield"
-                      id="email"
-                      type="text"
-                      autocomplete="off"
-                    />
-                    <div class="textfield-underline"></div>
-                    <label for="email">Email</label>
-                  </div>
-                  <button class="btn-minimal" type="submit">
-                    Send
-                  </button>
-                </form>
-              </div> */}
+          
             </div>
-            {/*   <VisibilitySensor once>
-            {({ isVisible }) => (
-              <Spring delay={300} to={{ opacity: isVisible ? 1 : 0 }}>
-                {({ opacity }) => <h2 style={{ opacity }}>Hello</h2>}
-              </Spring>
-            )}
-          </VisibilitySensor> */}
+         
           </div>
         </div>
       </div>
