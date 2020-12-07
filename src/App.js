@@ -195,7 +195,7 @@ function App() {
           <p className="frame__tagline">Front-end experimentation</p>
         </div>
         <div className="frame__links">
-          <a href="https://www.dropbox.com/s/129owvam7kedah1/ISHAN_SENGUPTA_RESUME.pdf?dl=0">
+          <a href="https://www.dropbox.com/s/wchtpctilaxujfv/ISHAN_UPDATED_RESUME.pdf?dl=0">
             Resume
           </a>
         </div>
