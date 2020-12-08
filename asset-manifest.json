@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/fiber-website/static/css/main.7e081b25.chunk.css",
-    "main.js": "/fiber-website/static/js/main.fea23650.chunk.js",
-    "main.js.map": "/fiber-website/static/js/main.fea23650.chunk.js.map",
+    "main.js": "/fiber-website/static/js/main.a30ec3fe.chunk.js",
+    "main.js.map": "/fiber-website/static/js/main.a30ec3fe.chunk.js.map",
     "runtime-main.js": "/fiber-website/static/js/runtime-main.7898afaa.js",
     "runtime-main.js.map": "/fiber-website/static/js/runtime-main.7898afaa.js.map",
-    "static/js/2.6163df24.chunk.js": "/fiber-website/static/js/2.6163df24.chunk.js",
-    "static/js/2.6163df24.chunk.js.map": "/fiber-website/static/js/2.6163df24.chunk.js.map",
+    "static/js/2.4970598d.chunk.js": "/fiber-website/static/js/2.4970598d.chunk.js",
+    "static/js/2.4970598d.chunk.js.map": "/fiber-website/static/js/2.4970598d.chunk.js.map",
     "static/js/3.48946705.chunk.js": "/fiber-website/static/js/3.48946705.chunk.js",
     "static/js/3.48946705.chunk.js.map": "/fiber-website/static/js/3.48946705.chunk.js.map",
     "index.html": "/fiber-website/index.html",
     "static/css/main.7e081b25.chunk.css.map": "/fiber-website/static/css/main.7e081b25.chunk.css.map",
-    "static/js/2.6163df24.chunk.js.LICENSE.txt": "/fiber-website/static/js/2.6163df24.chunk.js.LICENSE.txt",
+    "static/js/2.4970598d.chunk.js.LICENSE.txt": "/fiber-website/static/js/2.4970598d.chunk.js.LICENSE.txt",
     "static/media/styles.css": "/fiber-website/static/media/noise.afb129a4.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7898afaa.js",
-    "static/js/2.6163df24.chunk.js",
+    "static/js/2.4970598d.chunk.js",
     "static/css/main.7e081b25.chunk.css",
-    "static/js/main.fea23650.chunk.js"
+    "static/js/main.a30ec3fe.chunk.js"
   ]
 }
