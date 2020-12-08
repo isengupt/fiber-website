@@ -201,7 +201,7 @@ function App() {
         </div>
         <div className="frame__demos">
           <a
-            href="https://isengupt.github.io/car-prods/#"
+            href="https://isengupt.github.io/glass-blur/"
             activeClassName="frame__demo--current"
             className="frame__demo"
           >
